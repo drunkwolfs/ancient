@@ -293,6 +293,11 @@ table, th, td {
       google.script.run.addData(document.getElementById('dataForm'));
       document.getElementById('dataForm').reset();
     }
+
+    Telegram.WebApp.onEvent('themeChanged', function () {
+        bgColorInput.value = Telegram.WebApp.backgroundColor;
+        document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
+    });
   </script>
 </body>
 </html>
