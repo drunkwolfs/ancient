@@ -127,10 +127,10 @@ a {
     border-bottom: 1px solid var(--tg-theme-link-color, #000);
   }
   .number-minus:hover, .number-plus:hover {
-      background: #fffcfb;
+      background: var(--tg-theme-button-color, #50a8eb);
   }
   .number-minus:active, .number-plus:active {
-      background: #e8e4e2;
+      background: var(--tg-theme-button-color, #50a8eb);
   }
   .number-text {
       display: inline-block;
@@ -140,8 +140,8 @@ a {
       height: 28px;
       line-height: 28px;        
       font-size: 12px;
-      color: #29160a;
-      background: #fff;
+      color: var(--tg-theme-text-color, #222);
+      /* background: #fff; */
       outline: none;
       border: none;
       text-align: right;
@@ -149,7 +149,7 @@ a {
   .number-unit{
       display: inline-block;
       font-size: 12px;
-      color: #29160a;
+      color: var(--tg-theme-text-color, #222);
       line-height: 28px;
       height: 28px
   }
