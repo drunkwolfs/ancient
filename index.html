@@ -51,35 +51,7 @@
 
       const users = getDecompressedJsonParam('users');
       const items = modifItems(getDecompressedJsonParam('items'));
-      //Навигация
-      var pages = ['item_page.html', 'user_page.html'];
-      var currentPage = 0;
-      // Функция для загрузки контента
-      function loadContent(page) {
-          fetch(pages[page])
-              .then(response => response.text())
-              .then(html => {
-                  var content = document.getElementById('content');
-                  content.innerHTML = html;
-                  // Находим и выполняем все скрипты в загруженном HTML
-                  const scripts = content.querySelectorAll('script');
-                  for (const script of scripts) {
-                      if (script.src) {
-                          const newScript = document.createElement('script');
-                          newScript.src = script.src;
-                          document.head.appendChild(newScript);
-                      } else {
-                          eval(script.innerText);
-                      }
-                  }
-              })
-              .catch(error => {
-                  console.error('Ошибка при загрузке страницы:', error);
-                  document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
-              });
-      }
-      // Загружаем начальный контент
-      loadContent(currentPage);
+
     </script>
   </head>
 
@@ -96,6 +68,28 @@
       </tr>
     </table>
     <script>
+      //Навигация
+      var pages = ['item_page.html', 'user_page.html'];
+      var currentPage = 0;
+      // Функция для загрузки контента
+      function loadContent(page) {
+          fetch(pages[page])
+              .then(response => response.text())
+              .then(html => {
+                  document.getElementById('content').innerHTML = html;
+                  const scripts = document.getElementById('content').querySelectorAll('script');
+            for (const script of scripts) {
+              print( script);
+                    eval(script.innerText);
+            }
+              })
+              .catch(error => {
+                  console.error('Ошибка при загрузке страницы:', error);
+                  document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
+              });
+      }
+      // Загружаем начальный контент
+      loadContent(currentPage);
       document.getElementById('prev').addEventListener('click', () => {
           if (currentPage > 0) {
               currentPage--;
