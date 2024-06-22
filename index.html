@@ -16,17 +16,18 @@
   <script>
       function setThemeClass() {
           document.documentElement.className = Telegram.WebApp.colorScheme;
-      }
-
-      Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-      setThemeClass();
-      document.addEventListener('DOMContentLoaded', function() {
-        var hiddenInput = document.querySelector('.number-text');
+          var hiddenInput = document.querySelector('.number-text');
         var customInput = document.querySelector('.number');
         var computedStyle = window.getComputedStyle(hiddenInput);
         var backgroundColor = computedStyle.backgroundColor;
         customInput.style.backgroundColor = backgroundColor;
-    });
+      }
+
+      Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+      setThemeClass();
+    //   document.addEventListener('DOMContentLoaded', function() {
+
+    // });
   </script>
   <!-- <base target="_top"> -->
 <style>
