@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="MobileOptimized" content="176"/>
+  <meta name="HandheldFriendly" content="True"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <title></title>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
+  <script>
+    function setThemeClass() {
+      document.documentElement.className = Telegram.WebApp.colorScheme;
+      var hiddenInput = document.querySelector('.number-text');
+      var customInput = document.querySelector('.number');
+      var computedStyle = window.getComputedStyle(hiddenInput);
+      var backgroundColor = computedStyle.backgroundColor;
+      customInput.style.backgroundColor = backgroundColor;
+    }
+
+    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+    setThemeClass();
+  </script>
+<style>
+    table, th, td {
+      border: 1px solid var(--tg-theme-link-color, #000);
+      border-collapse: collapse;
+    }
+
+    table {
+      margin: 10px;
+    }
+    
+    table th, table td {
+      padding: 10px;
+    }
+    
+    input {
+      width: 100%;
+      border: 1px solid var(--tg-theme-link-color, #000);
+      box-sizing: border-box;
+    }
+
+    button {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            margin: 15px 0;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--tg-theme-button-color, #50a8eb);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            cursor: pointer;
+        }
+
+/* table.center {
+   margin-left: auto;  
+  margin-right: auto;
+} */
+
+</style>
+
+<style type="text/css">
+  body {
+    --bg-color: var(--tg-theme-bg-color, #fff);
+    font-family: sans-serif;
+    background-color: var(--bg-color);
+    color: var(--tg-theme-text-color, #222);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    color-scheme: var(--tg-color-scheme);
+  }
+
+body.gray {
+    background-color: var(--tg-theme-secondary-bg-color, #efefef);
+}
+
+a {
+    color: var(--tg-theme-link-color, #2678b6);
+}
+
+.btn {
+    font-size: 14px;
+    padding: 10px 17px;
+}
+
+.btn-primary {
+    background-color: var(--tg-theme-button-color, #50a8eb);
+    color: var(--tg-theme-button-text-color, #fff);
+    border: none;
+}
+
+  
+  .number {
+      display: inline-block;
+      user-select: none;
+      position: relative;
+      text-align: left;
+      padding: 0;
+      width: 65px;
+      /* background: var(--tg-theme-bg-color, #fff); */
+      border: 1px solid var(--tg-theme-link-color, #000);
+      height: 28px;
+  }
+  .number-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 24px;
+      border-left: 1px solid var(--tg-theme-link-color, #000);
+  }
+  .number-minus, .number-plus {
+      display: block;
+      height: 13.5px;
+      line-height: 13.5px;
+      background: var(--tg-theme-button-color, #50a8eb);
+      font-size: 15px;
+      font-weight: 300;
+      text-align: center;
+      font-family: arial;
+      color: var(--tg-theme-button-text-color, #ffffff);
+      text-decoration: none;
+  }
+  .number-plus {
+    border-bottom: 1px solid var(--tg-theme-link-color, #000);
+  }
+  .number-minus:hover, .number-plus:hover {
+      background: var(--tg-theme-button-color, #50a8eb);
+  }
+  .number-minus:active, .number-plus:active {
+      background: var(--tg-theme-button-color, #50a8eb);
+  }
+  .number-text {
+      display: inline-block;
+      padding: 0;
+      margin: 0;    
+      width: 17.5px;
+      height: 28px;
+      line-height: 28px;        
+      font-size: 12px;
+      color: var(--tg-theme-text-color, #222);
+      /* background: #fff; */
+      outline: none;
+      border: none;
+      text-align: right;
+  }
+  .number-unit{
+      display: inline-block;
+      font-size: 12px;
+      color: var(--tg-theme-text-color, #222);
+      line-height: 28px;
+      height: 28px
+  }
+  p {
+      margin: 40px 0 15px;
+  }
+
+  ul {
+      text-align: left;
+  }
+
+  li {
+      color: var(--tg-theme-hint-color, #a8a8a8);
+  }
+
+  textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px;
+  }
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: auto;
+    pointer-events: none;
+}
+
+button.close_btn {
+    /*position: fixed;*/
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 16px 20px;
+    text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+    <table class="center" width="80%">
+      <tr>
+        <td><select id="cmbTop"></select></td>
+        <td><div id="addBtn"><button onclick="addNumberInput()">Добавить</button></div></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <form id="dataForm" onsubmit="submitForm(event)">
+           <table id="elements" class="center">
+            <tbody>
+           	<tr>
+                <td><label for="name">Имя:</label></td>
+                <td><input type="text" id="name" name="name" required></td>
+            </tr>
+            </tbody>
+            </table>
+            <input type="submit" value="Добавить данные">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <!-- Шаблонный счетчик количества товара -->
+    <div id="hide-counter" style="display:none">
+        <div class="number" data-step="1" data-min="1" data-max="100">
+            <input class="number-text" type="text" name="count" value="1">
+            <span class="number-unit">шт</span>
+            <div class="number-controls">
+                <a href="#" class="number-plus">+</a>		
+                <a href="#" class="number-minus">−</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.number-minus, .number-plus', function(){
+                var $row = $(this).closest('.number');
+                var $input = $row.find('.number-text');
+                var step = $row.data('step');
+                var val = parseFloat($input.val());
+                if ($(this).hasClass('number-minus')) {
+                    val -= step;
+                } else {
+                    val += step;
+                }
+                $input.val(val);
+                $input.change();
+                return false;
+            });
+        
+            $('body').on('change', '.number-text', function(){
+                var $input = $(this);
+                var $row = $input.closest('.number');
+                var step = $row.data('step');
+                var min = parseInt($row.data('min'));
+                var max = parseInt($row.data('max'));
+                var val = parseFloat($input.val());
+                if (isNaN(val)) {
+                    val = step;
+                } else if (min && val < min) {
+                    val = min;	
+                    //delete element from table and add to listbox
+                    var tr = this.parentElement.parentElement.parentElement;
+                    var itemId = tr.firstElementChild.textContent;
+                    var itemPair = [];
+                    for(var i =0; i<itemList.length; i++){
+                        if(itemList[i][0] == itemId){
+                            itemPair = itemList[i];
+                            break;
+                        }
+                    }
+                    if(itemPair.length > 0){
+                        itemPair[2] = true;
+                        updateComboBox();
+                        tr.remove();
+                    }
+                } else if (max && val > max) {
+                    val = max;	
+                }
+                $input.val(val);
+            });
+        });
+    </script>
+
+  <script>
+    var itemList = [["Aurorix 300mg 30t",100,true],["Aurorix 150mg 30t",13,true],["Edronax 4mg 60t",7,true],["Edronax 4mg 40t unpack",2,true],["Arislow ER 1mg 28t",6,true],["Arislow ER 2mg 28t",7,true],["Arislow ER 4mg 28t",6,true]];
+      var comboBox = document.getElementById('cmbTop');
+      for (var i = 0; i < itemList.length; i++) {
+        if (itemList[i][1] == 0){
+          continue;
+        }
+        var option = document.createElement('option');
+        option.text = itemList[i][0];
+        option.value = option.text;
+        
+        comboBox.add(option);
+      }
+      
+      function updateComboBox(){
+        comboBox = document.getElementById('cmbTop');
+        for (var i = 0; i < itemList.length; i++) {
+          if (itemList[i][1] == 0){
+            continue;
+          }
+          const optionToStyle = comboBox.querySelector(`option[value="`+itemList[i][0]+`"]`); 
+          console.log(optionToStyle);
+          if(itemList[i][2]){
+            optionToStyle.style.display = 'block';
+          }else {
+            optionToStyle.style.display = 'none';
+          }
+        }
+        for (var i = 0; i < comboBox.options.length; i++) {
+        if(comboBox.options[i].style.display == 'block')
+        {
+        comboBox.selectedIndex = i;
+        break;
+        }
+       else if(i == comboBox.options.length-1){
+       comboBox.selectedIndex = -1;
+       }
+        }
+      }
+
+      function addNumberInput(){
+        var itemPos = document.getElementById('cmbTop').value;
+        var itemPair = [];
+        for(var i =0; i<itemList.length; i++){
+          if(itemList[i][0] == itemPos){
+            itemPair = itemList[i];
+            break;
+          }
+        }
+        if(itemPair.length > 0){
+          itemPair[2] = false;
+          updateComboBox();
+
+          //var newCounter = document.getElementById("hide-counter").cloneNode(true);
+          //var newCounterId = hashCode(itemPair[0]);
+          //newCounter.setAttribute('id', newCounterId);
+          var tableRef = document.getElementById("elements");
+          var newRow = tableRef.insertRow();
+          var newCell = newRow.insertCell();
+          var newCell2 = newRow.insertCell();
+          var newText = document.createTextNode(itemPair[0]);
+          var clone = document.querySelector('#hide-counter .number').cloneNode(true);
+          clone.setAttribute('data-max', itemPair[1]);
+          newCell.appendChild(newText);
+          newCell2.appendChild(clone);
+
+          //console.log("good");
+          
+          //var label1 = document.createElement('label');
+          //label1.innerHTML = itemPair[0]; 
+
+           //tbody.appendChild(tr);
+        }
+      }
+
+      function hashCode(str) {
+    let hash = 0;
+    for (let i = 0, len = str.length; i < len; i++) {
+        let chr = str.charCodeAt(i);
+        hash = (hash << 5) - hash + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return Math.abs(hash).toString(16);
+}
+
+      //google.script.run.withSuccessHandler(fillComboBox).getComboBoxData();
+  function fillComboBox(data) {
+    var dropdown = document.getElementById('combobox');
+    data.forEach(function(item) {
+      var option = document.createElement('option');
+      option.value = item;
+      option.text = item;
+      dropdown.appendChild(option);
+    });
+  }
+  
+    function submitForm(event) {
+      event.preventDefault();
+      google.script.run.addData(document.getElementById('dataForm'));
+      document.getElementById('dataForm').reset();
+    }
+
+  </script>
+</body>
+</html>
