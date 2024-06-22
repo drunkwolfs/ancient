@@ -1,4 +1,4 @@
-table, th, td {
+table, th {
   border: 1px solid var(--tg-theme-link-color, #000);
   border-collapse: collapse;
 }
@@ -7,6 +7,7 @@ table, th, td {
   width: calc(100% - 20px);
   margin: 0 10px;
   box-sizing: border-box;
+  height: 100%;
 }
 
 table th, table td {
@@ -157,4 +158,5 @@ border-bottom: 1px solid var(--tg-theme-link-color, #000);
 }
 .navigation{
     width: 50%;
+    padding: 10px;
 }
