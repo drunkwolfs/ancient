@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -15,11 +14,50 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
     <script>
+      // Устанавливает стиль для светлой\темной темы
       function setThemeClass() {
         document.documentElement.className = Telegram.WebApp.colorScheme;
       }
       Telegram.WebApp.onEvent('themeChanged', setThemeClass);
       setThemeClass();
+
+      //Подгрузка базы данных
+      function getDecompressedJsonParam(paramName) {
+          const urlParams = new URLSearchParams(window.location.search);
+          const encodedParam = urlParams.get(paramName);
+          
+          if (!encodedParam) {
+              console.log(`No parameter found for ${paramName}`);
+              return null;
+          }
+
+          try {
+              // Декодирование из Base64
+              const base64Decoded = atob(encodedParam);
+
+              // Преобразование строки в Uint8Array
+              const charList = base64Decoded.split('').map(c => c.charCodeAt(0));
+              const byteArray = new Uint8Array(charList);
+
+              // Распаковка с помощью pako
+              const decompressed = pako.inflate(byteArray, { to: 'string' });
+
+              // Преобразование в JSON
+              const json = JSON.parse(decompressed);
+              return json;
+          } catch (e) {
+              console.error(`Error processing parameter ${paramName}:`, e);
+              return null;
+          }
+      }
+      const users = getDecompressedJsonParam('users');
+      const items = getDecompressedJsonParam('items');
+
+      console.log(users);
+      console.log(items);
+
+      //Навигация
+      var pages = ['item_page.html', 'user_page.html'];
     </script>
   </head>
 
