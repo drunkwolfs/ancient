@@ -57,3 +57,68 @@ function addNumberInput(){
    }
     }
   }
+
+ function initComboBox(){ 
+  var comboBox = document.getElementById('cmbTop');
+      for (var i = 0; i < items.length; i++) {
+        if (items[i][1] == 0){
+          continue;
+        }
+        var option = document.createElement('option');
+        option.text = items[i][0];
+        option.value = option.text;
+        
+        comboBox.add(option);
+      }
+    }
+
+function initNumberCounter(){
+    $(document).ready(function() {
+        $('body').on('click', '.number-minus, .number-plus', function(){
+            var $row = $(this).closest('.number');
+            var $input = $row.find('.number-text');
+            var step = $row.data('step');
+            var val = parseFloat($input.val());
+            if ($(this).hasClass('number-minus')) {
+                val -= step;
+            } else {
+                val += step;
+            }
+            $input.val(val);
+            $input.change();
+            return false;
+        });
+    
+        $('body').on('change', '.number-text', function(){
+            var $input = $(this);
+            var $row = $input.closest('.number');
+            var step = $row.data('step');
+            var min = parseInt($row.data('min'));
+            var max = parseInt($row.data('max'));
+            var val = parseFloat($input.val());
+            if (isNaN(val)) {
+                val = step;
+            } else if (min && val < min) {
+                val = min;	
+                //delete element from table and add to listbox
+                var tr = this.parentElement.parentElement.parentElement;
+                var itemId = tr.firstElementChild.textContent;
+                var itemPair = [];
+                for(var i =0; i<items.length; i++){
+                    if(items[i][0] == itemId){
+                        itemPair = items[i];
+                        break;
+                    }
+                }
+                if(itemPair.length > 0){
+                    itemPair[3] = true;
+                    updateComboBox();
+                    tr.remove();
+                }
+            } else if (max && val > max) {
+                val = max;	
+            }
+            $input.val(val);
+        });
+    });
+}
