@@ -14,12 +14,13 @@
     
     input {
       width: 100%;
+      border: 1px solid var(--tg-theme-link-color, #000);
       box-sizing: border-box;
     }
     </style>
 <style>
 table, th, td {
-   border: 1px solid black;
+  border: 1px solid var(--tg-theme-link-color, #000);
   border-collapse: collapse;
 }
 
@@ -29,12 +30,9 @@ table, th, td {
 } */
 
 </style>
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-<!-- <script src="jquery.spinner.js"></script> -->
-<!-- <link href="bootstrap-spinner.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+<script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
 <script>
     function setThemeClass() {
         document.documentElement.className = Telegram.WebApp.colorScheme;
