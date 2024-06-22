@@ -45,8 +45,6 @@
       const users = getDecompressedJsonParam('users');
       const items = getDecompressedJsonParam('items');
 
-
-
       //Навигация
       var pages = ['item_page.html', 'user_page.html'];
       var currentPage = 0;
@@ -62,16 +60,6 @@
                   document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
               });
       }
-      document.getElementById('prev').addEventListener('click', () => {
-          if (currentPage > 1) {
-              currentPage--;
-              loadContent(currentPage);
-          }
-      });
-      document.getElementById('next').addEventListener('click', () => {
-          currentPage++;
-          loadContent(currentPage);
-      });
       // Загружаем начальный контент
       loadContent(currentPage);
     </script>
@@ -89,6 +77,17 @@
         <td><button id="next">Далее</button></td>
       </tr>
     </table>
+    <script>
+      document.getElementById('prev').addEventListener('click', () => {
+          if (currentPage > 1) {
+              currentPage--;
+              loadContent(currentPage);
+          }
+      });
+      document.getElementById('next').addEventListener('click', () => {
+          currentPage++;
+          loadContent(currentPage);
+      });</script>
   </body>
 
 </html>
