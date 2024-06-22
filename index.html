@@ -83,8 +83,8 @@
                   console.error('Ошибка при загрузке страницы:', error);
                   document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
               });
-              const scripts = document.getElementById('content').querySelectorAll('script');
-                  for (const script of scripts) {
+              var scripts = document.getElementById('content').querySelectorAll('script');
+                  for (var script of scripts) {
                     eval(script.textContent);
                   }
       }
