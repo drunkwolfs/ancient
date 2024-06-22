@@ -20,6 +20,13 @@
 
       Telegram.WebApp.onEvent('themeChanged', setThemeClass);
       setThemeClass();
+      document.addEventListener('DOMContentLoaded', function() {
+        var hiddenInput = document.querySelector('input');
+        var customInput = document.querySelector('.number-unit');
+        var computedStyle = window.getComputedStyle(hiddenInput);
+        var backgroundColor = computedStyle.backgroundColor;
+        customInput.style.backgroundColor = backgroundColor;
+    });
   </script>
   <!-- <base target="_top"> -->
 <style>
