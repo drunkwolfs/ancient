@@ -26,24 +26,15 @@
       function getDecompressedJsonParam(paramName) {
           const urlParams = new URLSearchParams(window.location.search);
           const encodedParam = urlParams.get(paramName);
-          
           if (!encodedParam) {
               console.log(`No parameter found for ${paramName}`);
               return null;
           }
-
           try {
-              // Декодирование из Base64
               const base64Decoded = atob(encodedParam);
-
-              // Преобразование строки в Uint8Array
               const charList = base64Decoded.split('').map(c => c.charCodeAt(0));
               const byteArray = new Uint8Array(charList);
-
-              // Распаковка с помощью pako
               const decompressed = pako.inflate(byteArray, { to: 'string' });
-
-              // Преобразование в JSON
               const json = JSON.parse(decompressed);
               return json;
           } catch (e) {
@@ -54,24 +45,48 @@
       const users = getDecompressedJsonParam('users');
       const items = getDecompressedJsonParam('items');
 
-      console.log(users);
-      console.log(items);
+
 
       //Навигация
       var pages = ['item_page.html', 'user_page.html'];
+      var currentPage = 0;
+      // Функция для загрузки контента
+      function loadContent(page) {
+          fetch(pages[page])
+              .then(response => response.text())
+              .then(html => {
+                  document.getElementById('content').innerHTML = html;
+              })
+              .catch(error => {
+                  console.error('Ошибка при загрузке страницы:', error);
+                  document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
+              });
+      }
+      document.getElementById('prev').addEventListener('click', () => {
+          if (currentPage > 1) {
+              currentPage--;
+              loadContent(currentPage);
+          }
+      });
+      document.getElementById('next').addEventListener('click', () => {
+          currentPage++;
+          loadContent(currentPage);
+      });
+      // Загружаем начальный контент
+      loadContent(currentPage);
     </script>
   </head>
 
   <body>
-    <table class="center" width="100%">
+    <table class="main-table">
       <tr>
         <td colspan="2">
           <div id="content"><!-- Страницы --></div>
         </td>
       </tr>
       <tr>
-        <td><button id="back-button" onclick="backPage()">Закрыть</button></td>
-        <td><button id="next-button" onclick="nextPage()">Далее</button></td>
+        <td><button id="prev">Закрыть</button></td>
+        <td><button id="next">Далее</button></td>
       </tr>
     </table>
   </body>
