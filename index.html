@@ -78,10 +78,9 @@
               .then(html => {
                   document.getElementById('content').innerHTML = html;
                   const scripts = document.getElementById('content').querySelectorAll('script');
-            for (const script of scripts) {
-              print( script);
+                  for (const script of scripts) {
                     eval(script.innerText);
-            }
+                  }
               })
               .catch(error => {
                   console.error('Ошибка при загрузке страницы:', error);
