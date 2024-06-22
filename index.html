@@ -65,8 +65,47 @@
 
 <style type="text/css">
   body {
-      padding: 10px;
+    --bg-color: var(--tg-theme-bg-color, #fff);
+    font-family: sans-serif;
+    background-color: var(--bg-color);
+    color: var(--tg-theme-text-color, #222);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    color-scheme: var(--tg-color-scheme);
   }
+
+body.gray {
+    background-color: var(--tg-theme-secondary-bg-color, #efefef);
+}
+
+a {
+    color: var(--tg-theme-link-color, #2678b6);
+}
+
+.btn {
+    font-size: 14px;
+    padding: 10px 17px;
+}
+
+.btn-primary {
+    background-color: var(--tg-theme-button-color, #50a8eb);
+    color: var(--tg-theme-button-text-color, #fff);
+    border: none;
+}
+
+button {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    margin: 15px 0;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--tg-theme-button-color, #50a8eb);
+    color: var(--tg-theme-button-text-color, #ffffff);
+    cursor: pointer;
+}
   
   .number {
       display: inline-block;
@@ -127,6 +166,41 @@
       line-height: 28px;
       height: 28px
   }
+  p {
+      margin: 40px 0 15px;
+  }
+
+  ul {
+      text-align: left;
+  }
+
+  li {
+      color: var(--tg-theme-hint-color, #a8a8a8);
+  }
+
+  textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px;
+  }
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: auto;
+    pointer-events: none;
+}
+
+button.close_btn {
+    /*position: fixed;*/
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 16px 20px;
+    text-transform: uppercase;
+}
 </style>
 </head>
 
