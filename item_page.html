@@ -2,15 +2,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var hiddenInput = document.querySelector('.number-text');
-      var customInput = document.querySelector('.number');
-      var computedStyle = window.getComputedStyle(hiddenInput);
-      var backgroundColor = computedStyle.backgroundColor;
-      customInput.style.backgroundColor = backgroundColor;
-    });
-  </script>
   <style type="text/css">
     .number {
         display: inline-block;
@@ -170,94 +161,32 @@
         
         comboBox.add(option);
       }
-      
-      function updateComboBox(){
-        comboBox = document.getElementById('cmbTop');
-        for (var i = 0; i < items.length; i++) {
-          if (items[i][1] == 0){
-            continue;
-          }
-          const optionToStyle = comboBox.querySelector(`option[value="`+items[i][0]+`"]`); 
-          console.log(optionToStyle);
-          if(items[i][3]){
-            optionToStyle.style.display = 'block';
-          }else {
-            optionToStyle.style.display = 'none';
-          }
-        }
-        for (var i = 0; i < comboBox.options.length; i++) {
-        if(comboBox.options[i].style.display == 'block')
-        {
-        comboBox.selectedIndex = i;
-        break;
-        }
-       else if(i == comboBox.options.length-1){
-       comboBox.selectedIndex = -1;
-       }
-        }
-      }
-
-      function addNumberInput(){
-        var itemPos = document.getElementById('cmbTop').value;
-        var itemPair = [];
-        for(var i =0; i<items.length; i++){
-          if(items[i][0] == itemPos){
-            itemPair = items[i];
-            break;
-          }
-        }
-        if(itemPair.length > 0){
-          itemPair[3] = false;
-          updateComboBox();
-
-          //var newCounter = document.getElementById("hide-counter").cloneNode(true);
-          //var newCounterId = hashCode(itemPair[0]);
-          //newCounter.setAttribute('id', newCounterId);
-          var tableRef = document.getElementById("elements");
-          var newRow = tableRef.insertRow();
-          var newCell = newRow.insertCell();
-          var newCell2 = newRow.insertCell();
-          var newText = document.createTextNode(itemPair[0]);
-          var clone = document.querySelector('#hide-counter .number').cloneNode(true);
-          clone.setAttribute('data-max', itemPair[1]);
-          newCell.appendChild(newText);
-          newCell2.appendChild(clone);
-
-          //console.log("good");
-          
-          //var label1 = document.createElement('label');
-          //label1.innerHTML = itemPair[0]; 
-
-           //tbody.appendChild(tr);
-        }
-      }
-
-      function hashCode(str) {
-    let hash = 0;
-    for (let i = 0, len = str.length; i < len; i++) {
-        let chr = str.charCodeAt(i);
-        hash = (hash << 5) - hash + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-    return Math.abs(hash).toString(16);
-}
+//       function hashCode(str) {
+//     let hash = 0;
+//     for (let i = 0, len = str.length; i < len; i++) {
+//         let chr = str.charCodeAt(i);
+//         hash = (hash << 5) - hash + chr;
+//         hash |= 0; // Convert to 32bit integer
+//     }
+//     return Math.abs(hash).toString(16);
+// }
 
       //google.script.run.withSuccessHandler(fillComboBox).getComboBoxData();
-  function fillComboBox(data) {
-    var dropdown = document.getElementById('combobox');
-    data.forEach(function(item) {
-      var option = document.createElement('option');
-      option.value = item;
-      option.text = item;
-      dropdown.appendChild(option);
-    });
-  }
+//   function fillComboBox(data) {
+//     var dropdown = document.getElementById('combobox');
+//     data.forEach(function(item) {
+//       var option = document.createElement('option');
+//       option.value = item;
+//       option.text = item;
+//       dropdown.appendChild(option);
+//     });
+//   }
   
-    function submitForm(event) {
-      event.preventDefault();
-      google.script.run.addData(document.getElementById('dataForm'));
-      document.getElementById('dataForm').reset();
-    }
+//     function submitForm(event) {
+//       event.preventDefault();
+//       google.script.run.addData(document.getElementById('dataForm'));
+//       document.getElementById('dataForm').reset();
+//     }
 
   </script>
 </body>
