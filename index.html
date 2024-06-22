@@ -79,8 +79,9 @@
               .then(html => {
                   document.getElementById('content').innerHTML = html;
                   
-                  console.log(document.getElementById('cmbTop'));
-                  initComboBox(document.getElementById('cmbTop'));
+                  // console.log(document.getElementById('cmbTop'));
+                  initNumberCounter();
+                  initComboBox();
               })
               .catch(error => {
                   console.error('Ошибка при загрузке страницы:', error);
