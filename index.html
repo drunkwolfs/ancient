@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="MobileOptimized" content="176"/>
+  <meta name="HandheldFriendly" content="True"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <title></title>
+  <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+  <script>
+      function setThemeClass() {
+          document.documentElement.className = Telegram.WebApp.colorScheme;
+      }
+
+      Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+      setThemeClass();
+  </script>
+  <!-- <base target="_top"> -->
 <style>
     table {
       border-collapse: collapse;
@@ -293,6 +311,7 @@ table, th, td {
       google.script.run.addData(document.getElementById('dataForm'));
       document.getElementById('dataForm').reset();
     }
+
   </script>
 </body>
 </html>
