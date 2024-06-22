@@ -1,3 +1,29 @@
+function getDecompressedJsonParam(paramName) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const encodedParam = urlParams.get(paramName);
+  if (!encodedParam) {
+      console.log(`No parameter found for ${paramName}`);
+      return null;
+  }
+  try {
+      const base64Decoded = atob(encodedParam);
+      const charList = base64Decoded.split('').map(c => c.charCodeAt(0));
+      const byteArray = new Uint8Array(charList);
+      const decompressed = pako.inflate(byteArray, { to: 'string' });
+      const json = JSON.parse(decompressed);
+      return json;
+  } catch (e) {
+      console.error(`Error processing parameter ${paramName}:`, e);
+      return null;
+  }
+}
+function modifItems(itemsArray){
+for (let i = 0; i < itemsArray.length; i++) {
+  itemsArray[i].push(true);
+}
+return itemsArray;
+}
+
 function beforeLoadPage(){
     var hiddenInput = document.querySelector('.number-text');
     var customInput = document.querySelector('.number');
