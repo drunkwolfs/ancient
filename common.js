@@ -99,6 +99,20 @@ function addNumberInput(){
       }
     }
 
+    function initUserComboBox(){ 
+     var comboBox = document.getElementById('cmbUser');
+         for (var i = 0; i < users.length; i++) {
+           if (users[i][1] == 0){
+             continue;
+           }
+           var option = document.createElement('option');
+           option.text = users[i][0];
+           option.value = option.text;
+           
+           comboBox.add(option);
+         }
+       }
+
 function initNumberCounter(){
     $(document).ready(function() {
         $('body').on('click', '.number-minus, .number-plus', function(){

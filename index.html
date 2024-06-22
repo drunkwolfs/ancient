@@ -19,9 +19,6 @@
       //Подгрузка базы данных
       const users = getDecompressedJsonParam('users');
       const items = modifItems(getDecompressedJsonParam('items'));
-      //Навигация
-      //var pages = ['select-items', 'select-user'];
-      
     </script>
   </head>
   <body>
@@ -29,8 +26,52 @@
       <tr>
         <td colspan="2">
           <div id="pages">
-            <div id="select-items" style="display: block;">фарма</div>
-            <div id="select-user" style="display: none;">клиенты</div>
+            <div id="select-items" style="display: block;">
+              <table>
+                <tr>
+                  <td><select id="cmbTop"></select></td>
+                  <td><div id="addBtn"><button onclick="addNumberInput()">Добавить</button></div></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <form id="dataForm" onsubmit="submitForm(event)">
+                     <table id="elements" class="center">
+                      <tbody>
+                       <tr>
+                          <td><label for="name">Имя:</label></td>
+                          <td><input type="text" id="name" name="name" required></td>
+                      </tr>
+                      </tbody>
+                      </table>
+                      <input type="submit" value="Добавить данные">
+                    </form>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="select-user" style="display: none;">
+              <table>
+                <tr>
+                  <td><select id="cmbUser"></select></td>
+                  <td><div><button onclick="addClient()">Добавить</button></div></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <form id="dataForm" onsubmit="submitForm(event)">
+                     <table id="elements" class="center">
+                      <tbody>
+                       <tr>
+                          <td><label for="name">Имя:</label></td>
+                          <td><input type="text" id="name" name="name" required></td>
+                      </tr>
+                      </tbody>
+                      </table>
+                      <input type="submit" value="Добавить данные">
+                    </form>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </td>
       </tr>
@@ -51,6 +92,9 @@
           </div>
       </div>
     <script>
+      initComboBox();
+      initUserComboBox()
+      initNumberCounter();
       var currentPage = 0;
       var maxPage = document.getElementById("pages").children.length-1;
       // Функция для загрузки контента
