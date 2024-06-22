@@ -2,202 +2,80 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <meta name="format-detection" content="telephone=no"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="MobileOptimized" content="176"/>
-  <meta name="HandheldFriendly" content="True"/>
-  <meta name="robots" content="noindex,nofollow"/>
-  <title></title>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
   <script>
-    function setThemeClass() {
-      document.documentElement.className = Telegram.WebApp.colorScheme;
+    document.addEventListener('DOMContentLoaded', function() {
       var hiddenInput = document.querySelector('.number-text');
       var customInput = document.querySelector('.number');
       var computedStyle = window.getComputedStyle(hiddenInput);
       var backgroundColor = computedStyle.backgroundColor;
       customInput.style.backgroundColor = backgroundColor;
-    }
-
-    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-    setThemeClass();
+    });
   </script>
-<style>
-    table, th, td {
-      border: 1px solid var(--tg-theme-link-color, #000);
-      border-collapse: collapse;
+  <style type="text/css">
+    .number {
+        display: inline-block;
+        user-select: none;
+        position: relative;
+        text-align: left;
+        padding: 0;
+        width: 65px;
+        border: 1px solid var(--tg-theme-link-color, #000);
+        height: 28px;
     }
-
-    table {
-      margin: 10px;
+    .number-controls {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 24px;
+        border-left: 1px solid var(--tg-theme-link-color, #000);
     }
-    
-    table th, table td {
-      padding: 10px;
+    .number-minus, .number-plus {
+        display: block;
+        height: 13.5px;
+        line-height: 13.5px;
+        background: var(--tg-theme-button-color, #50a8eb);
+        font-size: 15px;
+        font-weight: 300;
+        text-align: center;
+        font-family: arial;
+        color: var(--tg-theme-button-text-color, #ffffff);
+        text-decoration: none;
     }
-    
-    input {
-      width: 100%;
-      border: 1px solid var(--tg-theme-link-color, #000);
-      box-sizing: border-box;
-    }
-
-    button {
-            display: block;
-            width: 100%;
-            font-size: 14px;
-            margin: 15px 0;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: var(--tg-theme-button-color, #50a8eb);
-            color: var(--tg-theme-button-text-color, #ffffff);
-            cursor: pointer;
-        }
-
-/* table.center {
-   margin-left: auto;  
-  margin-right: auto;
-} */
-
-</style>
-
-<style type="text/css">
-  body {
-    --bg-color: var(--tg-theme-bg-color, #fff);
-    font-family: sans-serif;
-    background-color: var(--bg-color);
-    color: var(--tg-theme-text-color, #222);
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-    color-scheme: var(--tg-color-scheme);
-  }
-
-body.gray {
-    background-color: var(--tg-theme-secondary-bg-color, #efefef);
-}
-
-a {
-    color: var(--tg-theme-link-color, #2678b6);
-}
-
-.btn {
-    font-size: 14px;
-    padding: 10px 17px;
-}
-
-.btn-primary {
-    background-color: var(--tg-theme-button-color, #50a8eb);
-    color: var(--tg-theme-button-text-color, #fff);
-    border: none;
-}
-
-  
-  .number {
-      display: inline-block;
-      user-select: none;
-      position: relative;
-      text-align: left;
-      padding: 0;
-      width: 65px;
-      /* background: var(--tg-theme-bg-color, #fff); */
-      border: 1px solid var(--tg-theme-link-color, #000);
-      height: 28px;
-  }
-  .number-controls {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 24px;
-      border-left: 1px solid var(--tg-theme-link-color, #000);
-  }
-  .number-minus, .number-plus {
-      display: block;
-      height: 13.5px;
-      line-height: 13.5px;
-      background: var(--tg-theme-button-color, #50a8eb);
-      font-size: 15px;
-      font-weight: 300;
-      text-align: center;
-      font-family: arial;
-      color: var(--tg-theme-button-text-color, #ffffff);
-      text-decoration: none;
-  }
-  .number-plus {
+    .number-plus {
     border-bottom: 1px solid var(--tg-theme-link-color, #000);
-  }
-  .number-minus:hover, .number-plus:hover {
-      background: var(--tg-theme-button-color, #50a8eb);
-  }
-  .number-minus:active, .number-plus:active {
-      background: var(--tg-theme-button-color, #50a8eb);
-  }
-  .number-text {
-      display: inline-block;
-      padding: 0;
-      margin: 0;    
-      width: 17.5px;
-      height: 28px;
-      line-height: 28px;        
-      font-size: 12px;
-      color: var(--tg-theme-text-color, #222);
-      /* background: #fff; */
-      outline: none;
-      border: none;
-      text-align: right;
-  }
-  .number-unit{
-      display: inline-block;
-      font-size: 12px;
-      color: var(--tg-theme-text-color, #222);
-      line-height: 28px;
-      height: 28px
-  }
-  p {
-      margin: 40px 0 15px;
-  }
-
-  ul {
-      text-align: left;
-  }
-
-  li {
-      color: var(--tg-theme-hint-color, #a8a8a8);
-  }
-
-  textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 7px;
-  }
-
-button[disabled] {
-    opacity: 0.6;
-    cursor: auto;
-    pointer-events: none;
-}
-
-button.close_btn {
-    /*position: fixed;*/
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0;
-    margin: 0;
-    padding: 16px 20px;
-    text-transform: uppercase;
-}
-</style>
+    }
+    .number-minus:hover, .number-plus:hover {
+        background: var(--tg-theme-button-color, #50a8eb);
+    }
+    .number-minus:active, .number-plus:active {
+        background: var(--tg-theme-button-color, #50a8eb);
+    }
+    .number-text {
+        display: inline-block;
+        padding: 0;
+        margin: 0;    
+        width: 17.5px;
+        height: 28px;
+        line-height: 28px;        
+        font-size: 12px;
+        color: var(--tg-theme-text-color, #222);
+        /* background: #fff; */
+        outline: none;
+        border: none;
+        text-align: right;
+    }
+    .number-unit{
+        display: inline-block;
+        font-size: 12px;
+        color: var(--tg-theme-text-color, #222);
+        line-height: 28px;
+        height: 28px
+    }
+  </style>
 </head>
 
 <body>
-    <table class="center" width="80%">
+    <table>
       <tr>
         <td><select id="cmbTop"></select></td>
         <td><div id="addBtn"><button onclick="addNumberInput()">Добавить</button></div></td>
@@ -281,7 +159,6 @@ button.close_btn {
     </script>
 
   <script>
-    //var items = [["Aurorix 300mg 30t",100,true],["Aurorix 150mg 30t",13,true],["Edronax 4mg 60t",7,true],["Edronax 4mg 40t unpack",2,true],["Arislow ER 1mg 28t",6,true],["Arislow ER 2mg 28t",7,true],["Arislow ER 4mg 28t",6,true]];
       var comboBox = document.getElementById('cmbTop');
       for (var i = 0; i < items.length; i++) {
         if (items[i][1] == 0){
