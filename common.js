@@ -58,7 +58,7 @@ function addNumberInput(){
     }
   }
 
- function initComboBox(el){ 
+ function initComboBox(){ 
   var comboBox = el;
       for (var i = 0; i < items.length; i++) {
         if (items[i][1] == 0){

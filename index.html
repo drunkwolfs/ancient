@@ -78,6 +78,8 @@
               .then(response => response.text())
               .then(html => {
                   document.getElementById('content').innerHTML = html;
+                  loadContent(currentPage);
+                  console.log(document.getElementById('cmbTop'));
               })
               .catch(error => {
                   console.error('Ошибка при загрузке страницы:', error);
@@ -87,7 +89,6 @@
       }
       // Загружаем начальный контент
       loadContent(currentPage);
-      var t = document.getElementById('cmbTop');
       document.getElementById('prev').addEventListener('click', () => {
           if (currentPage > 0) {
               currentPage--;
