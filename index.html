@@ -42,9 +42,15 @@
               return null;
           }
       }
-      const users = getDecompressedJsonParam('users');
-      const items = getDecompressedJsonParam('items');
+      function modifItems(itemsArray){
+        for (let i = 0; i < itemsArray.length; i++) {
+          itemsArray[i].push(true);
+        }
+        return itemsArray;
+      }
 
+      const users = getDecompressedJsonParam('users');
+      const items = modifItems(getDecompressedJsonParam('items'));
       //Навигация
       var pages = ['item_page.html', 'user_page.html'];
       var currentPage = 0;
@@ -79,7 +85,7 @@
     </table>
     <script>
       document.getElementById('prev').addEventListener('click', () => {
-          if (currentPage > 1) {
+          if (currentPage > 0) {
               currentPage--;
               loadContent(currentPage);
           }
