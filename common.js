@@ -24,6 +24,7 @@ for (let i = 0; i < itemsArray.length; i++) {
 return itemsArray;
 }
 
+// Костыль для самодельного числового инпута. Нужен для правильной работы темных\светлых тем
 function beforeLoadPage(){
     var hiddenInput = document.querySelector('.number-text');
     var customInput = document.querySelector('.number');

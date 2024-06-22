@@ -29,8 +29,8 @@
       <tr>
         <td colspan="2">
           <div id="pages">
-            <div id="select-items" page="1" style="display: none;">select-items</div>
-            <div id="select-user" page="2" style="display: none;">select-user</div>
+            <div id="select-items" page="1" style="display: none;">фарма</div>
+            <div id="select-user" page="2" style="display: none;">клиенты</div>
           </div>
         </td>
       </tr>
@@ -39,6 +39,17 @@
         <td><button id="next">Далее</button></td>
       </tr>
     </table>
+        <!-- Шаблонный счетчик количества товара -->
+        <div id="hide-counter" style="display:none">
+          <div class="number" data-step="1" data-min="1" data-max="100">
+              <input class="number-text" type="text" name="count" value="1">
+              <span class="number-unit">шт</span>
+              <div class="number-controls">
+                  <a href="#" class="number-plus">+</a>		
+                  <a href="#" class="number-minus">−</a>
+              </div>
+          </div>
+      </div>
     <script>
       // Функция для загрузки контента
       function loadContent(page) {
