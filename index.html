@@ -21,7 +21,7 @@
       const items = modifItems(getDecompressedJsonParam('items'));
       //Навигация
       //var pages = ['select-items', 'select-user'];
-      var currentPage = 0;
+      
     </script>
   </head>
   <body>
@@ -29,8 +29,8 @@
       <tr>
         <td colspan="2">
           <div id="pages">
-            <div id="select-items" page="1" style="display: none;">фарма</div>
-            <div id="select-user" page="2" style="display: none;">клиенты</div>
+            <div id="select-items" style="display: block;">фарма</div>
+            <div id="select-user" style="display: none;">клиенты</div>
           </div>
         </td>
       </tr>
@@ -51,13 +51,20 @@
           </div>
       </div>
     <script>
+      var currentPage = 0;
+      var maxPage = document.getElementById("pages").children.length-1;
       // Функция для загрузки контента
       function loadContent(page) {
-          console.log(document.getElementById("pages").children);
+        var pages = document.getElementById("pages").children;
+        for(var i=0; i<=maxPage; i++){
+          if(i!=page){
+            pages[i].setAttribute('style', 'display:none;');
+          }
+          else{
+            pages[i].setAttribute('style', 'display:block;');
+          }
+        }
       }
-
-      // Загружаем начальный контент
-      loadContent(currentPage);
 
       document.getElementById('prev').addEventListener('click', () => {
           if (currentPage > 0) {
@@ -66,8 +73,10 @@
           }
       });
       document.getElementById('next').addEventListener('click', () => {
+        if (currentPage < maxPage){
           currentPage++;
           loadContent(currentPage);
+        }
       });</script>
 
     <script>
