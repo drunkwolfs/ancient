@@ -84,7 +84,7 @@
               });
               const scripts = document.getElementById('content').querySelectorAll('script');
                   for (const script of scripts) {
-                    eval(script.innerText);
+                    eval(script.textContent);
                   }
       }
       // Загружаем начальный контент
