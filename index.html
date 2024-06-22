@@ -83,7 +83,7 @@
                   console.error('Ошибка при загрузке страницы:', error);
                   document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
               });
-              initComboBox();
+              initComboBox(document.getElementById('content'));
       }
       // Загружаем начальный контент
       loadContent(currentPage);

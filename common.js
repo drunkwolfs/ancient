@@ -58,13 +58,13 @@ function addNumberInput(){
     }
   }
 
- function initComboBox(){ 
-  var comboBox = document.getElementById('cmbTop');
+ function initComboBox(el){ 
+  var comboBox = el.getElementById('cmbTop');
       for (var i = 0; i < items.length; i++) {
         if (items[i][1] == 0){
           continue;
         }
-        var option = document.createElement('option');
+        var option = el.createElement('option');
         option.text = items[i][0];
         option.value = option.text;
         
