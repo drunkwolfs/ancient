@@ -83,10 +83,11 @@
                   console.error('Ошибка при загрузке страницы:', error);
                   document.getElementById('content').innerHTML = '<p>Ошибка загрузки страницы.</p>';
               });
-              initComboBox(document.getElementById('cmbTop'));
+              
       }
       // Загружаем начальный контент
       loadContent(currentPage);
+      var t = document.getElementById('cmbTop');
       document.getElementById('prev').addEventListener('click', () => {
           if (currentPage > 0) {
               currentPage--;
