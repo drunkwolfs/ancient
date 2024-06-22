@@ -10,7 +10,10 @@
   <meta name="HandheldFriendly" content="True"/>
   <meta name="robots" content="noindex,nofollow"/>
   <title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
   <script>
       function setThemeClass() {
           document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -21,8 +24,12 @@
   </script>
   <!-- <base target="_top"> -->
 <style>
-    table {
+    table, th, td {
+      border: 1px solid var(--tg-theme-link-color, #000);
       border-collapse: collapse;
+    }
+
+    table {
       margin: 10px;
     }
     
@@ -35,12 +42,19 @@
       border: 1px solid var(--tg-theme-link-color, #000);
       box-sizing: border-box;
     }
-    </style>
-<style>
-table, th, td {
-  border: 1px solid var(--tg-theme-link-color, #000);
-  border-collapse: collapse;
-}
+
+    button {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            margin: 15px 0;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--tg-theme-button-color, #50a8eb);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            cursor: pointer;
+        }
 
 /* table.center {
    margin-left: auto;  
@@ -48,18 +62,74 @@ table, th, td {
 } */
 
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
-<script>
-    function setThemeClass() {
-        document.documentElement.className = Telegram.WebApp.colorScheme;
-    }
 
-    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-    setThemeClass();
-</script>
+<style type="text/css">
+  body {
+      padding: 10px;
+  }
+  
+  .number {
+      display: inline-block;
+      user-select: none;
+      position: relative;
+      text-align: left;
+      padding: 0;
+      width: 65px;
+      border: 1px solid var(--tg-theme-link-color, #000);
+      height: 28px;
+  }
+  .number-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 24px;
+      border-left: 1px solid var(--tg-theme-link-color, #000);
+  }
+  .number-minus, .number-plus {
+      display: block;
+      height: 13.5px;
+      line-height: 13.5px;
+      background: #faf4f2;
+      font-size: 15px;
+      font-weight: 300;
+      text-align: center;
+      font-family: arial;
+      color: #3e1e02;
+      text-decoration: none;
+  }
+  .number-plus {
+    border-bottom: 1px solid var(--tg-theme-link-color, #000);
+  }
+  .number-minus:hover, .number-plus:hover {
+      background: #fffcfb;
+  }
+  .number-minus:active, .number-plus:active {
+      background: #e8e4e2;
+  }
+  .number-text {
+      display: inline-block;
+      padding: 0;
+      margin: 0;    
+      width: 17.5px;
+      height: 28px;
+      line-height: 28px;        
+      font-size: 12px;
+      color: #29160a;
+      background: #fff;
+      outline: none;
+      border: none;
+      text-align: right;
+  }
+  .number-unit{
+      display: inline-block;
+      font-size: 12px;
+      color: #29160a;
+      line-height: 28px;
+      height: 28px
+  }
+</style>
 </head>
+
 <body>
     <table class="center" width="80%">
       <tr>
@@ -93,71 +163,6 @@ table, th, td {
             </div>
         </div>
     </div>
-    <style type="text/css">
-        body {
-            padding: 10px;
-        }
-        
-        .number {
-            display: inline-block;
-            user-select: none;
-            position: relative;
-            text-align: left;
-            padding: 0;
-            width: 65px;
-            border: 1px solid #ddd;
-            height: 28px;
-        }
-        .number-controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 24px;
-            border-left: 1px solid #ddd;
-        }
-        .number-minus, .number-plus {
-            display: block;
-            height: 13.5px;
-            line-height: 13.5px;
-            background: #faf4f2;
-            font-size: 15px;
-            font-weight: 300;
-            text-align: center;
-            font-family: arial;
-            color: #3e1e02;
-            text-decoration: none;
-        }
-        .number-plus {
-            border-bottom: 1px solid #ddd;
-        }
-        .number-minus:hover, .number-plus:hover {
-            background: #fffcfb;
-        }
-        .number-minus:active, .number-plus:active {
-            background: #e8e4e2;
-        }
-        .number-text {
-            display: inline-block;
-            padding: 0;
-            margin: 0;    
-            width: 17.5px;
-            height: 28px;
-            line-height: 28px;        
-            font-size: 12px;
-            color: #29160a;
-            background: #fff;
-            outline: none;
-            border: none;
-            text-align: right;
-        }
-        .number-unit{
-            display: inline-block;
-            font-size: 12px;
-            color: #29160a;
-            line-height: 28px;
-            height: 28px
-        }
-    </style>
     <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
