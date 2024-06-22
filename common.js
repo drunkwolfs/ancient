@@ -59,12 +59,12 @@ function addNumberInput(){
   }
 
  function initComboBox(el){ 
-  var comboBox = el.getElementById('cmbTop');
+  var comboBox = el;
       for (var i = 0; i < items.length; i++) {
         if (items[i][1] == 0){
           continue;
         }
-        var option = el.createElement('option');
+        var option = document.createElement('option');
         option.text = items[i][0];
         option.value = option.text;
         
