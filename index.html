@@ -59,7 +59,19 @@
           fetch(pages[page])
               .then(response => response.text())
               .then(html => {
-                  document.getElementById('content').innerHTML = html;
+                  var content = document.getElementById('content');
+                  content.innerHTML = html;
+                  // Находим и выполняем все скрипты в загруженном HTML
+                  const scripts = content.querySelectorAll('script');
+                  for (const script of scripts) {
+                      if (script.src) {
+                          const newScript = document.createElement('script');
+                          newScript.src = script.src;
+                          document.head.appendChild(newScript);
+                      } else {
+                          eval(script.innerText);
+                      }
+                  }
               })
               .catch(error => {
                   console.error('Ошибка при загрузке страницы:', error);
