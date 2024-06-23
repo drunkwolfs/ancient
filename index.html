@@ -21,6 +21,7 @@
     <script>
       //Подгрузка базы данных
       const users = getDecompressedJsonParam('users');
+      const statuses = getDecompressedJsonParam('statuses');
       const items = modifItems(getDecompressedJsonParam('items'));
     </script>
   </head>
@@ -75,6 +76,24 @@
                 </tr>
               </table>
             </div>
+            <div id="select-operator" style="display: none;">
+              <table>
+                <tr>
+                  <td colspan="2">
+                    <label for="task-operator">Выбери исполнителя
+                    <select id="task-operator" name="operator">
+                    </select></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <label for="task-status">Статус
+                    <select id="task-status" name="status">
+                    </select></label>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </td>
       </tr>
@@ -99,6 +118,8 @@
     <script>
       initComboBox();
       initUserComboBox();
+      initOperatorComboBox();
+      initStatusComboBox();
       initNumberCounter();
       var currentPage = 0;
       var maxPage = document.getElementById("pages").children.length-1;
@@ -125,6 +146,9 @@
           if (currentPage > 0) {
               currentPage--;
               loadContent(currentPage);
+              if(currentPage == 0){
+                document.getElementById('next').style.display = "block";
+              }
           }
       });
       document.getElementById('next').addEventListener('click', () => {

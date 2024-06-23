@@ -119,6 +119,30 @@ function addNumberInput(){
        $('#cmbUser2').val(null).trigger('change');
        }
 
+ function initOperatorComboBox(){ 
+  var comboBox = document.getElementById('task-operator');
+      for (var i = 0; i < users.length; i++) {
+        if (users[i][3] != "Сотрудник"){
+          continue;
+        }
+        var option = document.createElement('option');
+        option.text = items[i][0];
+        option.value = option.text;
+        
+        comboBox.add(option);
+      }
+    }
+
+    function initStatusComboBox(){ 
+     var comboBox = document.getElementById('task-status');
+         for (var i = 0; i < statuses.length; i++) {
+          var option = document.createElement('option');
+          option.text = statuses[i]
+          option.value = option.text;
+          comboBox.add(option);
+         }
+       }
+
       function newUserAdded(){
         $("#cmbUser2").select2({disabled: true});
         document.getElementById("deleteNewClientBtn").style.display = "block";
