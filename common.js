@@ -116,7 +116,7 @@ function addNumberInput(){
           newUserAdded();
         }
        });
-       $('#cmbUser2').val(null).trigger('change');
+          $('#cmbUser2').val(null).trigger('change');
        }
 
  function initOperatorComboBox(){ 
