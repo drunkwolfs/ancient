@@ -63,11 +63,11 @@
                       <tbody>
                        <tr id="ContactInput">
                           <td><label for="сontactTag">Контактные данные:</label></td>
-                          <td><input type="text" id="сontactTag" name="сontactTag" readonly="readonly"></td>
+                          <td><input type="text" id="сontactTag" name="сontactTag" disabled></td>
                       </tr>
                       <tr id="DeliveryAddress">
                          <td><label for="deliveryTag">Адрес доставки:</label></td>
-                         <td><input type="text" id="deliveryTag" name="deliveryTag" readonly="readonly"></td>
+                         <td><input type="text" id="deliveryTag" name="deliveryTag" disabled></td>
                      </tr>
                       </tbody>
                       </table>
@@ -131,6 +131,9 @@
         if (currentPage < maxPage){
           currentPage++;
           loadContent(currentPage);
+          if(currentPage == 1){ // и если не выбран элемент комбобокса
+            document.getElementById('next').style.display = "none";
+          }
         }
       });</script>
 

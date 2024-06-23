@@ -116,23 +116,40 @@ function addNumberInput(){
           newUserAdded();
         }
        });
-       $('.js-example-basic-single').val(null).trigger('change');
+       $('#cmbUser2').val(null).trigger('change');
        }
 
       function newUserAdded(){
-        $(".js-example-basic-single").select2({disabled: true});
+        $("#cmbUser2").select2({disabled: true});
         document.getElementById("deleteNewClientBtn").style.display = "block";
-        document.getElementById("DeliveryAddress").removeAttribute("readonly");
-        document.getElementById("ContactInput").removeAttribute("readonly");
+        document.getElementById("deliveryTag").disabled = false;
+        document.getElementById("сontactTag").disabled = false;
       }
 
 function deleteClient(){
   document.getElementById("deleteNewClientBtn").style.display = "none";
-  document.getElementById("DeliveryAddress").value = "";
-  document.getElementById("ContactInput").value = "";
-  document.getElementById("DeliveryAddress").setAttribute("readonly", "readonly");
-  document.getElementById("ContactInput").setAttribute("readonly", "readonly");
-  $('.cmbUser2').val(null).trigger('change');
+  document.getElementById("deliveryTag").value = "";
+  document.getElementById("сontactTag").value = "";
+  document.getElementById("deliveryTag").disabled = true;
+  document.getElementById("сontactTag").disabled = true;
+  $("#cmbUser2").select2({disabled: false});
+  removeSelectedValue();
+}
+
+// Функция для получения значения
+function getSelectedValue() {
+  return $('#cmbUser2').val();
+}
+
+// Функция для удаления выбранного значения из списка
+function removeSelectedValue() {
+  var selectedValue = getSelectedValue();
+  if (selectedValue) {
+      // Удаляем выбранную опцию из DOM
+      $('#cmbUser2 option[value="' + selectedValue + '"]').remove();
+      // Обновляем Select2
+      $('#cmbUser2').val(null).trigger('change');
+  }
 }
 
 function initNumberCounter(){
