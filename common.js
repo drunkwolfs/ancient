@@ -100,18 +100,30 @@ function addNumberInput(){
     }
 
     function initUserComboBox(){ 
-     var comboBox = document.getElementById('cmbUser');
-         for (var i = 0; i < users.length; i++) {
-           if (users[i][1] == 0){
-             continue;
-           }
-           var option = document.createElement('option');
-           option.text = users[i][0];
-           option.value = option.text;
-           
-           comboBox.add(option);
-         }
+      var data = [];
+      for (var i = 0; i < users.length; i++) {
+        data.push({id: i, text: users[i][0]});
+      }
+      $(".js-example-basic-single").select2({
+        data: data, width : '100%', language: "ru", tags: true,
+        insertTag: function (data, tag) {
+          tag.isNew = true;
+          data.push(tag);
+        }
+      }).on("select2:close", function(e) {
+        if(e.params.hasOwnProperty('originalSelect2Event') &&
+         e.params.originalSelect2Event.data.isNew == true){
+          newUserAdded();
+        }
+       });
+       $('.js-example-basic-single').val(null).trigger('change');
        }
+
+      function newUserAdded(){
+        $(".js-example-basic-single").select2({disabled: true});
+        document.getElementById("deleteNewClientBtn").style.display = "block";
+        document.getElementById("telegramInput").style.display = "block";
+      }
 
 function initNumberCounter(){
     $(document).ready(function() {

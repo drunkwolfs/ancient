@@ -12,6 +12,9 @@
     <title></title>
     <link rel="stylesheet" href="home.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/ru.js"></script>
     <script type="text/javascript" src="https://telegram.org/js/telegram-web-app.js?1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
     <script type="text/javascript" src="common.js"></script>
@@ -22,8 +25,10 @@
     </script>
   </head>
   <body>
-    <table class="main-table">
-      <tr>
+    <div class="full-height-table">
+      <table class="main-table">
+        <!-- <tbody> -->
+      <tr class="content-row">
         <td colspan="2">
           <div id="pages">
             <div id="select-items" style="display: block;">
@@ -45,22 +50,23 @@
             <div id="select-user" style="display: none;">
               <table>
                 <tr>
-                  <td><select id="cmbUser"></select></td>
-                  <td><div><button onclick="addClient()">Добавить</button></div></td>
+                  <td colspan="2">
+                    <label for="cmbUser2">Выбери или введи ФИО клиента
+                    <select class="js-example-basic-single" id="cmbUser2" name="state">
+                    </select></label>
+                  </td>
+                  <td><div id="deleteNewClientBtn" style="display: none;"><button onclick="deleteClient()">Удалить</button></div></td>
                 </tr>
                 <tr>
                   <td colspan="2">
-                    <form id="dataForm" onsubmit="submitForm(event)">
-                     <table id="elements" class="center">
+                     <table id="userElements" class="center">
                       <tbody>
-                       <tr>
-                          <td><label for="name">Имя:</label></td>
-                          <td><input type="text" id="name" name="name" required></td>
+                       <tr id="telegramInput" style="display: none;">
+                          <td><label for="name">Telegram:</label></td>
+                          <td><input type="text" id="name" name="name"></td>
                       </tr>
                       </tbody>
                       </table>
-                      <input type="submit" value="Добавить данные">
-                    </form>
                   </td>
                 </tr>
               </table>
@@ -68,11 +74,13 @@
           </div>
         </td>
       </tr>
-      <tr>
-        <td class="navigation"><button id="prev">Закрыть</button></td>
-        <td class="navigation"><button id="next">Далее</button></td>
+      <tr class="navigation">
+        <td class="navigation"><button style="display: none;" id="prev">Назад</button></td>
+        <td class="navigation"><button style="display: block;" id="next">Далее</button></td>
       </tr>
+      <!-- </tbody> -->
     </table>
+    </div>
         <!-- Шаблонный счетчик количества товара -->
         <div id="hide-counter" style="display:none">
           <div class="number" data-step="1" data-min="1" data-max="100">
@@ -86,12 +94,18 @@
       </div>
     <script>
       initComboBox();
-      initUserComboBox()
+      initUserComboBox();
       initNumberCounter();
       var currentPage = 0;
       var maxPage = document.getElementById("pages").children.length-1;
       // Функция для загрузки контента
       function loadContent(page) {
+        if(page <= 0){
+          document.getElementById('prev').style.display = "none";
+        }
+        else{
+          document.getElementById('prev').style.display = "block";
+        }
         var pages = document.getElementById("pages").children;
         for(var i=0; i<=maxPage; i++){
           if(i!=page){

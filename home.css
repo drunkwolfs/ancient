@@ -1,17 +1,46 @@
-table, th {
-  border: 1px solid var(--tg-theme-link-color, #000);
-  border-collapse: collapse;
-}
-  
-.main-table {
-  width: calc(100% - 20px);
-  margin: 0 10px;
-  box-sizing: border-box;
-  height: 100%;
+.full-height-table{
+    height: 100vh;  /* Полная высота окна */
+    display: flex;
+    flex-direction: column;
 }
 
-table th, table td {
-  padding: 10px;
+.main-table {
+    height: 100vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-collapse: collapse;
+    width: calc(100% - 20px);
+    margin: 0 10px;
+    box-sizing: border-box;
+    }
+
+    .content-row{
+       flex-grow: 1;
+   } 
+   
+   tr.navigation{
+    width: 100%;
+    /* flex-shrink: 1; */
+    min-height: 50px;
+}
+
+table.main-table, table.main-table > tbody > tr{
+  border: 1px solid var(--tg-theme-link-color, #000);
+}
+  
+
+
+
+
+
+tr.navigation > td.navigation{
+    width: 50vw;
+    padding: 10px;
+}
+
+table.main-table > tbody > tr > td{
+  padding: 5px 10px 0 10px;
 }
   
 input {
@@ -124,11 +153,10 @@ button.close_btn {
     text-align: center;
     font-family: arial;
     color: var(--tg-theme-button-text-color, #ffffff);
+    border-bottom: 1px solid var(--tg-theme-link-color, #000);
     text-decoration: none;
 }
-.number-plus {
-border-bottom: 1px solid var(--tg-theme-link-color, #000);
-}
+
 .number-minus:hover, .number-plus:hover {
     background: var(--tg-theme-button-color, #50a8eb);
 }
@@ -155,8 +183,4 @@ border-bottom: 1px solid var(--tg-theme-link-color, #000);
     color: var(--tg-theme-text-color, #222);
     line-height: 28px;
     height: 28px
-}
-.navigation{
-    width: 50%;
-    padding: 10px;
 }
