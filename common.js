@@ -13,7 +13,7 @@ function getDecompressedJsonParam(paramName) {
       const json = JSON.parse(decompressed);
       return json;
   } catch (e) {
-      console.error(`Error processing parameter ${paramName}:`, e);
+      console.error(`Error processing parameter ${paramName}:`, e);encodedParam
       return null;
   }
 }
@@ -115,6 +115,7 @@ function addNumberInput(){
          e.params.originalSelect2Event.data.isNew == true){
           newUserAdded();
         }
+        document.getElementById('next').style.display = "block";
        });
           $('#cmbUser2').val(null).trigger('change');
        }
@@ -126,7 +127,7 @@ function addNumberInput(){
           continue;
         }
         var option = document.createElement('option');
-        option.text = items[i][0];
+        option.text = users[i][0];
         option.value = option.text;
         
         comboBox.add(option);
