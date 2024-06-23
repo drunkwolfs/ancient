@@ -122,8 +122,18 @@ function addNumberInput(){
       function newUserAdded(){
         $(".js-example-basic-single").select2({disabled: true});
         document.getElementById("deleteNewClientBtn").style.display = "block";
-        document.getElementById("telegramInput").style.display = "block";
+        document.getElementById("DeliveryAddress").removeAttribute("readonly");
+        document.getElementById("ContactInput").removeAttribute("readonly");
       }
+
+function deleteClient(){
+  document.getElementById("deleteNewClientBtn").style.display = "none";
+  document.getElementById("DeliveryAddress").value = "";
+  document.getElementById("ContactInput").value = "";
+  document.getElementById("DeliveryAddress").setAttribute("readonly", "readonly");
+  document.getElementById("ContactInput").setAttribute("readonly", "readonly");
+  $('.cmbUser2').val(null).trigger('change');
+}
 
 function initNumberCounter(){
     $(document).ready(function() {
