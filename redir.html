@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect</title>
-</head>
-<body>
     <script>
-        // Получить параметры из URL
-        const params = new URLSearchParams(window.location.search);
-        
-        // Создать объект только с id и sign
-        const paramObj = {
-            id: params.get('InvId'),
-            sign: params.get('SignatureValue')
-        };
-        
-        // Преобразовать в JSON и закодировать в base64
-        const jsonString = JSON.stringify(paramObj);
-        const base64Encoded = btoa(unescape(encodeURIComponent(jsonString)));
-        
-        // Переадресовать на Telegram бота
-        window.location.href = `https://t.me/CognitiveIntegrationBot?start=${base64Encoded}`;
+        (function() {
+            const BOT_USERNAME = 'CognitiveIntegrationBot'; // Change this
+            
+            const params = new URLSearchParams(window.location.search);
+            const invId = params.get('InvId');
+            const signature = params.get('SignatureValue');
+            
+            if (invId && signature) {
+                const data = invId + ':' + signature;
+                const encoded = btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+                window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + encoded;
+            } else {
+                window.location.href = 'https://t.me/' + BOT_USERNAME;
+            }
+        })();
     </script>
-</body>
+</head>
+<body></body>
 </html>
