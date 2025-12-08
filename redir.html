@@ -9,7 +9,12 @@
     <script>
         // Получить параметры из URL
         const params = new URLSearchParams(window.location.search);
-        const paramObj = Object.fromEntries(params);
+        
+        // Создать объект только с id и sign
+        const paramObj = {
+            id: params.get('InvId'),
+            sign: params.get('SignatureValue')
+        };
         
         // Преобразовать в JSON и закодировать в base64
         const jsonString = JSON.stringify(paramObj);
