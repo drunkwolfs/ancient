@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -11,9 +11,9 @@
             const signature = params.get('SignatureValue');
             
             if (invId && signature) {
-                const data = invId + ':' + signature;
-                const encoded = btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-                window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + encoded;
+                const data = invId + '_' + signature;
+                //const encoded = btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+                window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + data;
             } else {
                 window.location.href = 'https://t.me/' + BOT_USERNAME;
             }
