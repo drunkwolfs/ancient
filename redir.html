@@ -13,7 +13,7 @@
             if (invId && signature) {
                 const data = invId + '_' + signature;
                 //const encoded = btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-                alert(params);
+                alert(data);
                 window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + data;
             } else {
                 window.location.href = 'https://t.me/' + BOT_USERNAME;
