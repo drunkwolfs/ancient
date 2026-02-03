@@ -1,0 +1,23 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        (function() {
+            const BOT_USERNAME = 'SciPharmBot'; // Change this
+            
+            const params = new URLSearchParams(window.location.search);
+            const invId = params.get('InvId');
+            const signature = params.get('SignatureValue');
+            
+            if (invId && signature) {
+                const data = invId + '_' + signature;
+                window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + data;
+            } else {
+                window.location.href = 'https://t.me/' + BOT_USERNAME;
+            }
+        })();
+    </script>
+</head>
+<body></body>
+</html>
