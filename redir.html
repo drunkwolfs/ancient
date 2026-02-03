@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <script>
         (function() {
-            const BOT_USERNAME = 'CognitiveIntegrationBot'; // Change this
+            const BOT_USERNAME1 = 'SciPharmBot'
+            const BOT_USERNAME2 = 'CognitiveIntegrationBot'; // Change this
             
             const params = new URLSearchParams(window.location.search);
             const invId = params.get('InvId');
@@ -12,9 +13,11 @@
             
             if (invId && signature) {
                 const data = invId + '_' + signature;
-                //const encoded = btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-                alert(data);
-                window.location.href = 'https://t.me/' + BOT_USERNAME + '?start=' + data;
+                if (confirm("Выберите бота:\nOK = mvp\nОтмена = для разработки")) {
+                    window.location.href = 'https://t.me/' + BOT_USERNAME1 + '?start=' + data;
+                } else {
+                    window.location.href = 'https://t.me/' + BOT_USERNAME2 + '?start=' + data;
+                }
             } else {
                 window.location.href = 'https://t.me/' + BOT_USERNAME;
             }
